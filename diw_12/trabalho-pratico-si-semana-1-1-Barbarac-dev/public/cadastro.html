@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="imagex/png" href="./image.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #26296b;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background: rgb(241, 242, 245);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+        }
+
+        .btn-custom {
+            background: #1e3a8a;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .btn-google {
+            background: white;
+            color: #333;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .forgot-password a, .new-user a {
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2 class="mb-4">Bem-vindo!</h2>
+        <form id="loginForm">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" placeholder="Digite seu usuário" required>
+                <label for="username">Usuário</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+                <label for="password">Senha</label>
+            </div>
+            <button type="submit" class="btn btn-custom w-100 py-2">Entrar</button>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-google w-100 py-2 d-flex align-items-center justify-content-center">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" width="20" class="me-2">
+                    Entrar com o Google
+                </button>
+            </div>
+            <div class="forgot-password text-center mt-3">
+                <a href="#" class="text-decoration-none">Esqueceu a senha?</a>
+            </div>
+            <div class="new-user text-center mt-3">
+                <span>Primeira vez aqui? <a href="#" class="text-decoration-none">Crie uma conta</a></span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(event) {
+                event.preventDefault();
+                var username = $("#username").val();
+                var password = $("#password").val();
+
+                var users = {
+                    "usuario44": "user1234"
+                };
+
+                if (users[username] && users[username] === password) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login bem-sucedido!',
+                        text: 'Redirecionando...',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        window.location.href = "pagina_cliente.html";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Usuário ou senha incorretos.',
+                        confirmButtonColor: '#1e3a8a'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 4,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": { "opacity": 1 }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
